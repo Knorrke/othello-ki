@@ -38,25 +38,24 @@ public class KI {
      * Attributen gesetzten rechenTiefe
      */
     public double minimax(int[][] spielfeld, int aktuelleFarbe, int tiefe) {
-        //TODO
-        /*if ( _______________________  || !spiel.zuegeMoeglich(spielfeld, aktuelleFarbe)) {
+        if (tiefe == rechenTiefe || !spiel.zuegeMoeglich(spielfeld, aktuelleFarbe)) {
             return stellungBewerten(spielfeld);
         } else {
             Double bisherigerWert = null;
-            for(int i=__; i<__; i++) {
-                for(int j=__; j<__; j++) {
-                    if ( ___________________________________ ) {
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (Spiel.zugMoeglich(spielfeld,aktuelleFarbe, i, j)) {
                         int[][] spielfeldNeu = Spiel.zugSimulieren(spielfeld, aktuelleFarbe, i, j);
                         int naechsteFarbe = Spiel.getGegner(aktuelleFarbe);
-                        double neueBewertung = _________________________________________ ;
+                        double neueBewertung = minimax(spielfeldNeu,naechsteFarbe, tiefe + 1);
                         if (farbe == aktuelleFarbe) {
                             //Maximum auswählen
-                            if (bisherigerWert == null || _____________________________) {
+                            if (bisherigerWert == null || bisherigerWert < neueBewertung) {
                                 bisherigerWert = neueBewertung;
                             }
                         } else {
                             //Minimum auswählen
-                            if (bisherigerWert == null || _____________________________) {
+                            if (bisherigerWert == null || bisherigerWert > neueBewertung) {
                                 bisherigerWert = neueBewertung;
                             }
                         }
@@ -64,9 +63,7 @@ public class KI {
                 }
             }
             return bisherigerWert;
-        }*/
-        
-        return 0;
+        }
     }
 
     public void ziehen() {
