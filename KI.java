@@ -32,10 +32,7 @@ public class KI {
     }
 
     /**
-     * Aufgabe e) Bitte ergänze in den mit __ gekennzeichneten Lücken
-     * 
-     * Berechnet rekursiv den besten Zug nach dem Minimax-Algorithmus bis zur in den 
-     * Attributen gesetzten rechenTiefe
+     * Aufgabe h) Zufall ergänzt, um Verhalten abzuändern ohne aber Spielstärke einzuschränken.
      */
     public double minimax(int[][] spielfeld, int aktuelleFarbe, int tiefe) {
         if (tiefe == rechenTiefe || !spiel.zuegeMoeglich(spielfeld, aktuelleFarbe)) {
@@ -50,12 +47,18 @@ public class KI {
                         double neueBewertung = minimax(spielfeldNeu,naechsteFarbe, tiefe + 1);
                         if (farbe == aktuelleFarbe) {
                             //Maximum auswählen
-                            if (bisherigerWert == null || bisherigerWert < neueBewertung) {
+                            //Hier kommt der Zufall ins Spiel: Gleichwertige Züge
+                            //werden zufällig ausgewählt
+                            if (bisherigerWert == null || bisherigerWert < neueBewertung
+                            || (bisherigerWert == neueBewertung && Math.random()>0.5)) {
                                 bisherigerWert = neueBewertung;
                             }
                         } else {
                             //Minimum auswählen
-                            if (bisherigerWert == null || bisherigerWert > neueBewertung) {
+                            //Hier kommt der Zufall ins Spiel: Gleichwertige Züge
+                            //werden zufällig ausgewähle
+                            if (bisherigerWert == null || bisherigerWert > neueBewertung
+                            || (bisherigerWert == neueBewertung && Math.random()>0.5)) {
                                 bisherigerWert = neueBewertung;
                             }
                         }
