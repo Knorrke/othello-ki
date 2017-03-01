@@ -16,16 +16,40 @@ public class KI {
     }
 
     /**
-     * Aufgabe c)
-     * Bewertet die Stellung. Je besser die Stellung für die KI, desto höher der Rückgabewert
+     * Aufgabe i) Bewertet die Stellung unter Berücksichtigung von X- und C-Feldern
+	 * (siehe Wikipedia: https://de.wikipedia.org/wiki/Othello_(Spiel)#Strategie)
      */
     public double stellungBewerten(int[][] spielfeld) {
-        int stand = 0;
+        double stand = 0;
         for(int i=0; i<8; i++) {
             for (int j=0; j<8; j++) {
                 if(spielfeld[i][j] == 0) continue;
-                if(spielfeld[i][j] == farbe) stand++;
-                else stand--;
+                if(spielfeld[i][j] == farbe) {
+                    if((i==0 && j==0) || (i==0 && j==7) || (i==7 && j==0) || (i==7 && j==7)){
+                        stand = stand + 5;
+                    } else if((i==1 && j==1) || (i==1 && j==6) || (i==6 && j==1) || (i==6 && j==6)) {
+                        stand = stand - 1;
+                    } else if (i+j == 7 || i==j) {
+                        stand = stand + 1.5;
+                    } else if (i==0 || j==0 || i==7 || j==7) {
+                        stand = stand + 2;
+                    } else {
+                        stand = stand + 1;
+                    }
+                }
+                else {
+                    if((i==0 && j==0) || (i==0 && j==7) || (i==7 && j==0) || (i==7 && j==7)){
+                        stand = stand - 5;
+                    } else if((i==1 && j==1) || (i==1 && j==6) || (i==6 && j==1) || (i==6 && j==6)) {
+                        stand = stand + 1;
+                    } else if (i+j == 7 || i==j) {
+                        stand = stand - 1.5;
+                    } else if (i==0 || j==0 || i==7 || j==7) {
+                        stand = stand - 2;
+                    } else {
+                        stand = stand - 1;
+                    }
+                }
             }
         }
         return stand;
