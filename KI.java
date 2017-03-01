@@ -20,8 +20,15 @@ public class KI {
      * Bewertet die Stellung. Je besser die Stellung für die KI, desto höher der Rückgabewert
      */
     public double stellungBewerten(int[][] spielfeld) {
-        //TODO
-        return 0;
+        int stand = 0;
+        for(int i=0; i<8; i++) {
+            for (int j=0; j<8; j++) {
+                if(spielfeld[i][j] == 0) continue;
+                if(spielfeld[i][j] == farbe) stand++;
+                else stand--;
+            }
+        }
+        return stand;
     }
 
     /**
